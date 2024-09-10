@@ -7,4 +7,8 @@ def home():
 
 @app.route("/names")
 def shownames():
-    return render_template("home.html", title="home.html", names=["Pierer", "Paul", "Corinne"])
+    return render_template(
+        "home.html", 
+        title="home.html", 
+        names=["Pierer", "Paul", "Corinne"]
+    )

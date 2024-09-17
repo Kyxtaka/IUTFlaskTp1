@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
-{% block styles %}
+{ % extends "base.html" % }
+{ % block styles % }
 {{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">
+<link rel="stylesheet" href="{{ url_for('static',filename='home.css')}}">
 {% endblock %}
-{% block content %}
+{% block content %} 
 <h1>{{title}}</h1>
 <div class="sample">
     {% for x in books %}

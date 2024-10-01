@@ -1,5 +1,6 @@
 from .app import db
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField , HiddenField
 from wtforms . validators import DataRequired
@@ -9,8 +10,14 @@ class Author (db.Model):
     name = db.Column (db.String(100))
 
     def __repr__ (self ):
-        return "<Author (%d) %s>" % (self.id , self.name)
+        return "<Author (%d) %s>" % (self.id, self.name)
     
+class User(db.Model, UserMixin ):
+    username = db.Column(db.String(50), primary_key = True)
+    password = db.Column(db.String(64))
+    
+    def get_id (self):
+        return self.username
     
 def get_author(id):
     return  Author.query.get_or_404(id)  

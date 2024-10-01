@@ -1,12 +1,28 @@
-from .app import app
-from flask import render_template
-from .models import get_author, get_sample
+from .app import app, db
+from flask import render_template, url_for, redirect, request
+from .models import get_author, get_sample, Author, User
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField
-from wtforms . validators import DataRequired
-from flask import url_for , redirect
-from .app import db
-from . models import Author
+from wtforms import StringField , HiddenField, PasswordField
+from wtforms.validators import DataRequired
+from hashlib import sha256
+from flask_login import login_user, current_user, logout_user
+
+class AuthorForm(FlaskForm):
+    id = HiddenField('id')
+    name = StringField('Nom', validators=[DataRequired()])
+
+class LoginForm(FlaskForm):
+    username = StringField('Username')
+    password = PasswordField('Password')
+    
+    def get_authenticated_user(self):
+        user = User.query.get(self.username.data)
+        if user is None:
+            return None
+        m = sha256()
+        m.update(self.password.data.encode())
+        passwd = m.hexdigest()
+        return user if passwd == user.password else None
 
 @app.route("/")
 def home():
@@ -29,10 +45,6 @@ def detail(id):
     book = books[int(id)]
     return render_template("detail.html",b=book)
 
-class AuthorForm(FlaskForm):
-    id = HiddenField('id')
-    name = StringField('Nom', validators=[DataRequired()])
-
 @app.route("/edit/author/<int:id>")
 def edit_author(id):
     a = get_author(id)
@@ -52,3 +64,19 @@ def save_author():
         db.session.commit()
         return redirect(url_for('edit_author', id=_id))
     return render_template("edit-author.html",author=a, form=f)
+
+@app.route("/login/", methods =("GET","POST",))
+def login():
+    f = LoginForm
+    if f.validate_on_submit():
+        user = f.get_authenticated_user()
+        if user:
+            login_user(user)
+            return redirect(url_for("home"))
+    return render_template("login.html", form=f)
+
+@app.route("/logout/")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+                   

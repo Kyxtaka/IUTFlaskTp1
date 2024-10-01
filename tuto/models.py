@@ -1,24 +1,8 @@
-# import yaml, os.path
-# Books = yaml.safe_load(
-#     open(
-#     os.path.join(
-#     os.path.dirname(__file__),
-#             "data.yml"
-#         )
-#     )
-# )
-
-# # Pour avoir un id
-# i = 0
-# for book in Books:
-#     book['id'] = i
-#     i += 1
-
-# def get_sample():
-#     return Books[0:10]
-
 from .app import db
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField , HiddenField
+from wtforms . validators import DataRequired
 
 class Author (db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -27,6 +11,9 @@ class Author (db.Model):
     def __repr__ (self ):
         return "<Author (%d) %s>" % (self.id , self.name)
     
+    
+def get_author(id):
+    return  Author.query.get_or_404(id)  
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key = True)

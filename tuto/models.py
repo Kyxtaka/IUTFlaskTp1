@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField , HiddenField
-from wtforms . validators import DataRequired
+from wtforms.validators import DataRequired
+from .app import login_manager
 
 class Author (db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -19,9 +20,6 @@ class User(db.Model, UserMixin ):
     def get_id (self):
         return self.username
     
-def get_author(id):
-    return  Author.query.get_or_404(id)  
-
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     price = db.Column(db.Float)
@@ -35,5 +33,13 @@ class Book(db.Model):
     def __repr__ (self ):
             return "<Book (%d) %s>" % (self.id , self.title)
 
+
 def get_sample():
     return Book.query.limit(10).all()
+
+def get_author(id):
+    return  Author.query.get_or_404(id)  
+
+@login_manager.user_loader
+def load_user(username):
+    return User.query.get(username)

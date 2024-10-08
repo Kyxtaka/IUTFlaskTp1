@@ -49,6 +49,8 @@ def newuser(username:str, password:str):
     db.session.add(u)
     db.session.commit()
 
+
+#Ne fonctionne pas
 @app.cli.command()
 @click.argument('username')
 #@click.argument('old_passwd')

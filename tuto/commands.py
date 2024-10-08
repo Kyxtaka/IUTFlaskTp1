@@ -32,7 +32,7 @@ def loaddb(filename):
     db.session.commit()
     
 @app.cli.command()
-def syncdb ():
+def syncdb():
     """Creates all missing tables. """
     db.create_all()
     
@@ -53,14 +53,14 @@ def newuser(username:str, password:str):
 @click.argument('username')
 #@click.argument('old_passwd')
 @click.argument('new_passwd')
-def newuser(username:str, new_passwd:str):
+def changepassword(username:str, new_passwd:str):
     '''changhe user password'''
     from .models import User
     from hashlib import sha256
     new_m = sha256()
     # old_m.update(old_passwd.encode())
     user = User.query.get(username)
-    user = User(username=username, password=new_passwd.hexdigest())
+    user = User(username=username, password=new_m.hexdigest())
     db.session.commit()
 
 

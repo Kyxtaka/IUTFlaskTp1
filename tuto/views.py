@@ -75,11 +75,8 @@ def login():
     elif f.validate_on_submit():
         user = f.get_authenticated_user()
         if user:
-            print("DOOOOOOOOOOOOOOOOOOo")
-            # current_user = login_user(user)
             login_user(user)
-            next = f.next.data or url_for("home")
-            return redirect(next)
+            return redirect(f.next.data or url_for("home"))
     return render_template("login.html", form=f)
 
 @app.route("/logout/")

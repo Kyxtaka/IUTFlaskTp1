@@ -1,4 +1,7 @@
 from .app import app
+from .app import db
 import tuto.views
-import tuto.commands
-import tuto.models
+from .views import *
+from .commands import *
+from .models import *
+

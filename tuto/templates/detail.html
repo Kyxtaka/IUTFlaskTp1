@@ -5,6 +5,35 @@
 {% endblock %}
 {% block content %}
 <h1>{{title}}</h1>
+    <div class="body-nav-right">
+        <nav class="navigation">
+            <!-- <a class="navbar-brand" href="#">Service</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <div class="collapse navbar-collapse" id="navbarCollapse"></div>
+                <ul class="navbar-nav"></ul>
+                    <li>
+                        <a class="user_text nav-link active" aria-current="page" href="{{ url_for('edit_author',id=b.id) }}" >
+                        <span class="edit" title="Edit"> edit nom autheur</span ></a></li>
+                    <li>
+                        <a class="user_text nav-link active" aria-current="page" href="{{ url_for('edit_book',id=b.id) }}">
+                        <span class="edit" title="Edit">edit book</span ></a>
+                    </li>
+                    <li>
+                        <a class="edit nav-link active" href="{{ url_for('save_fav',id=b.id) }}">
+                            {% if is_fav == True %} 
+                                <span class="fav" title="fav"> supprimer des favoris</span >
+                            {% else %}
+                                <span class="fav" title="fav"> ajouter dans favoris</span >
+                            {% endif %}
+                        </a> 
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
     <div class="sample">
         <h1>{{ b.title }}</b></h1>
         <img src="{{ url_for('static', filename='images/'+b.image)}}" alt="{{b.title}}" title="{{b.title}}">
@@ -12,23 +41,7 @@
             <li>Author {{ b.author }}</li>
             <li>Price {{ b.price }}</li>
             <li>URL : <a href="{{ b.url }}">lien</a></li>
-            <li>Rating : {{ rate_avarage }} / 5 ( {{ rate_count }} people rated this book)</li> 
-            <li>
-                <a class="user_text" href="{{ url_for('edit_author',id=b.id) }}" >
-                <span class="edit" title="Edit"> edit nom autheur</span ></a></li>
-            <li>
-                <a class="user_text" href="{{ url_for('edit_book',id=b.id) }}">
-                <span class="edit" title="Edit">edit book</span ></a>
-            </li>
-            <li>
-                <a class="edit" href="{{ url_for('save_fav',id=b.id) }}">
-                    {% if is_fav == True %} 
-                        <span class="fav" title="fav"> supprimer des favoris</span >
-                    {% else %}
-                        <span class="fav" title="fav"> ajouter dans favoris</span >
-                    {% endif %}
-                </a> 
-            </li>
+            <li>Rating : {{ rate_avarage }} / 5 ( {{ rate_count }} people rated this book)</li>    
         </ul>
         {% if current_user.is_authenticated %}
             <form  class="rating-bar" action=" {{ url_for ('save_rate') }}" method="POST">

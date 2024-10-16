@@ -29,3 +29,30 @@
     text-align: center;
     margin-left: 15rem;
 }
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.sample {
+    margin: 0px;
+}
+.body-nav-right {
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	color: var(--c-text-tertiary);
+	a {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		transition: 0.25s ease;
+    }
+}

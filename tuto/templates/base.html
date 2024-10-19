@@ -66,7 +66,31 @@
       </main>
       <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-          <span class="text-muted">Place sticky footer content here.</span>
+          <!-- <span class="text-muted">Place sticky footer content here.</span> -->
+          <div class="logo">
+            <a href="{{ url_for('home')}}">
+              <img src="../static/logo/Logo-INFO-Quadri.png" title="iut d'orléans">
+            </a>
+            <a href="https://www.univ-orleans.fr/">
+              <img src="../static/logo/logo-univ-orleans_3.png" title="université d'orléans">
+            </a>
+          </div>
+          <div class="footer-infos">
+            <p>Projet TPFLASK IUT informatique</p>
+            <p>Répertoire de livre</p>
+            <p>© copyright</p>
+          </div>
+          <div class="credit">
+            <label for="contributors">contributors</label>
+            <ul id="contributors">
+              <li>
+                <a href="https://github.com/Kyxtaka">Nathan RANDRIANTSOA</a>
+              </li>
+              <li>
+                <a href="https://github.com/clemencebc1">Clémence BOCQUET</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </footer>
       {% block scripts %}

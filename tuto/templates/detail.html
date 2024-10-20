@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='detail.css')}}">
+{% endblock %}
+{% block content %}
+<h1>{{title}}</h1>
+    <div class="sample">
+        <h1>{{ b.title }}</b></h1>
+        <img src="{{ url_for('static', filename='images/'+b.image)}}" alt="{{b.title}}" title="{{b.title}}">
+        <ul>
+            <li>Author {{ b.author }}</li>
+            <li>Price {{ b.price }}</li>
+            <li>URL : <a href="{{ b.url }}">lien</a></li>
+            <li>Rating : {{ rate_avarage }} / 5 ( {{ rate_count }} people rated this book)</li> 
+            <li>
+                <a class="user_text" href="{{ url_for('edit_author',id=b.id) }}" >
+                <span class="edit" title="Edit"> edit nom autheur</span ></a></li>
+            <li>
+                <a class="user_text" href="{{ url_for('edit_book',id=b.id) }}">
+                <span class="edit" title="Edit">edit book</span ></a>
+            </li>
+            <li>
+                <a class="edit" href="{{ url_for('save_fav',id=b.id) }}">
+                    {% if is_fav == True %} 
+                        <span class="fav" title="fav"> supprimer des favoris</span >
+                    {% else %}
+                        <span class="fav" title="fav"> ajouter dans favoris</span >
+                    {% endif %}
+                </a> 
+            </li>
+        </ul>
+        {% if current_user.is_authenticated %}
+            <form  class="rating-bar" action=" {{ url_for ('save_rate') }}" method="POST">
+                <input type="hidden" name="book_id" value="{{ b.id }}">
+                <input type="hidden" name="username" value="{{ current_user.username }}">
+                <div class="stars">
+                    <!-- Exemple de bar de notation sur 5 étoile trouvé sur internet,
+                    génération de 5 radio bouttons avec 5 valeur différentes dans un form 
+                    &#9733 fait reférence a l'émogi étoile, user_rate check (recupere l'ancienne note de l'user dans la BD)
+                    -->
+                    <input type="radio" id="star5" name="rating" value="5" {% if user_rate == 5 %}checked{% endif %}><label for="star5">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4" {% if user_rate == 4 %}checked{% endif %}><label for="star4">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3" {% if user_rate == 3 %}checked{% endif %}><label for="star3">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2" {% if user_rate == 2 %}checked{% endif %}><label for="star2">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1" {% if user_rate == 1 %}checked{% endif %}><label for="star1">&#9733;</label>
+                </div>
+                <button type="submit">rate this book</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

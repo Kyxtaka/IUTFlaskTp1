@@ -1,0 +1,31 @@
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 2em;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.stars input:checked ~ label,
+.stars input:hover ~ label {
+    color: gold;
+}
+
+.stars label:hover ~ label {
+    color: gold;
+}
+
+.rating-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    margin-left: 15rem;
+}

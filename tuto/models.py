@@ -1,6 +1,7 @@
 import yaml, os.path
 from .app import db
 from flask_login import UserMixin
+from sqlalchemy.sql.expression import func
 
 
 import yaml, os.path
@@ -20,6 +21,10 @@ class Author (db.Model):
 
     def __repr__ (self ):
         return "Autheur (%d) %s" % (self.id , self.name)
+    
+    @staticmethod
+    def max_author():
+        return db.session.query(func.max(Author.id)).scalar()
     
 class Favoris(db.Model):
     user = db.Column(db.String(50), db.ForeignKey('user.username'),primary_key=True)
@@ -50,6 +55,7 @@ class Book(db.Model):
 
     def __repr__(self):
         return "Livre (%d) %s" % (self.id, self.title)
+    
     
 class Genre(db.Model):
     id_genre = db.Column(db.Integer, primary_key = True)
@@ -107,8 +113,9 @@ def get_genre(id_genre):
 def getFavorites(username):
     return Favoris.query.filter_by(user=username).all()
 
-def get_book(id) -> Book:
+def get_book(id):
     return Book.query.get_or_404(id)
+
 
 class User(db.Model, UserMixin):
     username = db.Column(db.String(50), primary_key=True)

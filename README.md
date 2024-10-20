@@ -10,7 +10,7 @@ Groupe : Nathan Randriantsoa et Clemence Bocquet *TD2B*
 
 
 ## Lien GitHub
-<https://github.com/Kyxtaka/IUTFlaskTp1/edit/ajout-auteur/README.md>
+<https://github.com/Kyxtaka/IUTFlaskTp1>
 
 ## Lancement application
 Pour lancer un environnement virtuel, vous devez, depuis VSCode : 

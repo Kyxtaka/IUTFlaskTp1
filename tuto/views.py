@@ -73,6 +73,30 @@ def save_rate():
     book = books[int(book_id)-1]
     return redirect(url_for("detail", id=book_id))
 
+@app.route("/add/author/")
+@login_required
+def add_author():
+    f = AuthorForm(id = int(Author.max_author())+1)
+    return render_template(
+        "add-author.html",
+        form=f,
+        title = "Ajouter an author"
+    )
+
+@app.route("/ajout/author", methods=("POST",))
+@login_required
+def save_add():
+    f = AuthorForm(id = int(Author.max_author())+1)
+    if f.validate_on_submit():
+        id = int(f.id.data)
+        name = f.name.data
+        db.session.add(Author(id=id, name=name))
+        db.session.commit()
+        return redirect(url_for('add_author'))
+    return render_template ("add-author.html",
+    form=f)
+    
+
 @app.route("/profil")
 @login_required
 def profil():

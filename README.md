@@ -15,21 +15,21 @@ Groupe : Nathan Randriantsoa et Clemence Bocquet *TD2B*
 ## Lancement application
 Pour lancer un environnement virtuel, vous devez, depuis VSCode : 
 ### Si un .venv/venv se trouve dans le projet 
-> Ouvrir le projet à sa racine, lancer la commande **source venv/bin/activate**
-> Avant le prompt, un (.venv) doit être affiché affirmant que vous avez bien activé votre environnement virtuel
+> Ouvrir le projet à sa racine, lancer la commande **source venv/bin/activate**  
+> Avant le prompt, un (.venv) doit être affiché affirmant que vous avez bien activé votre environnement virtuel  
 
 ### Si il n'y a pas de .venv/venv ou qu'il y a des difficultés à activer le venv
-> Sur VSCode, ouvrir le projet à sa racine
-> Aller dans tuto>app.py
-> Sélectionner un interpréteur (en bas à droite à côté de "Python")
-> Cliquer sur "créer un environnement virtuel" puis "Venv", "supprimer et recreer" et choisir l'interpréteur python
-> Prendre requirement.txt pour les dépendances à  installer
+> Sur VSCode, ouvrir le projet à sa racine  
+> Aller dans tuto>app.py  
+> Sélectionner un interpréteur (en bas à droite à côté de "Python")  
+> Cliquer sur "créer un environnement virtuel" puis "Venv", "supprimer et recreer" et choisir l'interpréteur python  
+> Prendre requirement.txt pour les dépendances à  installer  
 
 
 Pour lancer l'application après avoir activé votre environnement virtuel, depuis VSCode :
 ### Lancer l'application
-> Vous pouvez lancer l'application avec **flask run**
-> Ouvrir depuis le lien donné
+> Vous pouvez lancer l'application avec **flask run**  
+> Ouvrir depuis le lien donné  
 
 ### Import données
 > **flask loaddb tuto/data.yml**

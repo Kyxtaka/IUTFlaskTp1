@@ -29,6 +29,9 @@ Pour lancer un environnement virtuel, vous devez, depuis VSCode :
 > Ouvrez un un shell dans le repertoire racine du project
 > Taper la commande `python3 -m venv /path/to/new/virtual/environment` si vous avez la version 3 de python sinon `python3 -m venv /path/to/new/virtual/environment`, une fois le venv de crée veillez l'activer (commande ci-dessus)
 
+### Si lec commandes ci-dessus ne fonctionnent pas
+> Si les commande ci-dessus ne fonctionnent pas cette commande peut fonctionner ` virtualenv -p python3 venv`
+
 ### Installation des dépendence 
 > Dans le répertoire racine du projet il y a un fichier `requirements.txt`, tourjours dans le shell et avec le venv d'activé taper la commande `pip install -r path/to/requirements.txt`. Une fois les dépendences d'installées, vous pouvez lancez l'application.
 

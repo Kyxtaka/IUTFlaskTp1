@@ -29,7 +29,7 @@ Pour lancer un environnement virtuel, vous devez, depuis VSCode :
 Pour lancer l'application après avoir activé votre environnement virtuel, depuis VSCode :
 ### Lancer l'application
 > Vous pouvez lancer l'application avec **flask run**  
-> Ouvrir depuis le lien donné  
+> Ouvrir la page depuis le lien donné (Running on http://127.0...)
 
 ### Import données
 > **flask loaddb tuto/data.yml**
